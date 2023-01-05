@@ -30,6 +30,9 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/reset-css/reset.css",
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/material-design-icons/iconfont/material-icons.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -93,12 +96,29 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/reset-css/reset.css",
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/material-design-icons/iconfont/material-icons.css",
               "src/styles.scss"
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
