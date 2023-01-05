@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
+import { NgxTranslateModule } from '../ngx-translate/ngx-translate.module';
 import {
     ProductListingPageComponent
 } from './components/product-listing-page/product-listing-page.component';
@@ -24,7 +26,9 @@ import {
     PurchaseHistoryListingPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule, 
+    HttpClientModule,
+    NgxTranslateModule
   ],
   exports: [
     SignInPageComponent,
