@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import { LoadingService } from 'src/app/core/services/loading.service';
 import { RoutingService } from 'src/app/core/services/routing.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -29,7 +30,8 @@ export class SignInPageComponent implements OnInit {
     public translateService: TranslateService,
     private formBuilder: FormBuilder,
     private accountService: AccountService,
-    private routingService: RoutingService
+    private routingService: RoutingService,
+    private loadingService: LoadingService
   ) { }
   
   ngOnInit(): void {
@@ -41,13 +43,15 @@ export class SignInPageComponent implements OnInit {
     this.signIn(signInRequestDto);
   }
 
-  signIn(signInRequestDto: SignInRequestDto) {
+  private signIn(signInRequestDto: SignInRequestDto) {
+    this.loadingService.startLoading();
     const signInResponseDto: Observable<SignInResponseDto> = this.accountService.signIn(signInRequestDto);
     signInResponseDto.subscribe((responseDto) => {
       if (responseDto != null) {
         this.setUserUserAccount(responseDto);
         this.routingService.navigate(UrlConst.PATH_PRODUCT_LISTING)
       }
+      this.loadingService.stopLoading();
     })
   }
 

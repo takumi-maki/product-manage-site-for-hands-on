@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { MaterialModule } from '../material/material.module';
+import { NgxTranslateModule } from '../ngx-translate/ngx-translate.module';
 import { ErrorMessagingComponent } from './components/error-messaging/error-messaging.component';
 import { LoadingComponent } from './components/loading/loading.component';
 
@@ -10,7 +12,9 @@ import { LoadingComponent } from './components/loading/loading.component';
     ErrorMessagingComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
+    NgxTranslateModule,
   ], 
   exports: [LoadingComponent, ErrorMessagingComponent]
 })

@@ -3,6 +3,7 @@
     <div class="sign-in-title-wrapper">
       <p>EXAMPLE SITE</p>
     </div>
+    <app-error-messaging></app-error-messaging>
     <div class="sign-in-criteria-wrapper">
       <form [formGroup]="signInForm">
         <mat-form-field class="form-field" hideRequiredMarker>
@@ -14,7 +15,7 @@
         </mat-form-field>
         <mat-form-field class="form-field" hideRequiredMarker>
           <mat-label>{{ 'signInPage.userPassword' | translate }}</mat-label>
-          <input id="signin-user-password" matInput type="text" formControlName="signInUserPassword">
+          <input id="signin-user-password" matInput type="password" formControlName="signInUserPassword">
             <mat-error class="validation-error" *ngIf="signInUserPassword.hasError('required')">
               {{ 'validationError.required' | translate }}
             </mat-error>
