@@ -1,14 +1,29 @@
 <section class="sign-in-page-wrapper">
   <div class="sign-in-page">
     <div class="sign-in-title-wrapper">
-      <p>EXAPMLE SITE</p>
+      <p>EXAMPLE SITE</p>
     </div>
     <div class="sign-in-criteria-wrapper">
-      <form>
-        <input id="signin-user-account" type="text" placeholder="ユーザアカウント">
-        <input id="signin-user-password" type="password" placeholder="パスワード">
+      <form [formGroup]="signInForm">
+        <mat-form-field class="form-field" hideRequiredMarker>
+          <mat-label>{{ 'signInPage.userAccount' | translate }}</mat-label>
+          <input id="signin-user-account" matInput type="text" formControlName="signInUserAccount">
+          <mat-error class="validation-error" *ngIf="signInUserAccount.hasError('required')">
+            {{ 'validationError.required' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" hideRequiredMarker>
+          <mat-label>{{ 'signInPage.userPassword' | translate }}</mat-label>
+          <input id="signin-user-password" matInput type="text" formControlName="signInUserPassword">
+            <mat-error class="validation-error" *ngIf="signInUserPassword.hasError('required')">
+              {{ 'validationError.required' | translate }}
+            </mat-error>
+        </mat-form-field>
       </form>
-      <a href="ProductListingPage.html" class="button">サインイン</a>
+      <button mat-flat-button id="sign-in-button" class="flat-button" 
+        [disabled]="!signInForm.valid" (click)="clickSignInButton()">
+        {{ 'signInPage.signInButton' | translate }}
+      </button>
     </div>
   </div>
 </section>
