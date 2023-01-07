@@ -9,8 +9,25 @@ describe('LoadingService', () => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(LoadingService);
   });
+    
+  describe('#constructor', () => {
+    it('should be created', () => {
+      expect(service).toBeTruthy();
+    });
+  })
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+  describe('#startLoading', () => {
+    it('should start loading', () => {
+      service.startLoading();
+      expect(service.isLoading).toBe(true)
+    })
+  })
+
+  describe('#stopLoading', () => {
+    it('should stop loading', () => {
+      service.stopLoading();
+      expect(service.isLoading).toBe(false)
+    })
+  })
+  
 });
