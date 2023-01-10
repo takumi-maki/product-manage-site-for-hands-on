@@ -1,4 +1,8 @@
-import { Observable } from 'rxjs';
+import {
+    catchError, filter, fromEvent, interval, map, multicast, Observable, of, pipe, retry, Subject,
+    tap
+} from 'rxjs';
+import { ajax } from 'rxjs/ajax';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { RoutingService } from 'src/app/core/services/routing.service';
 import { TitleI18Service } from 'src/app/shared/services/title-i18.service';
@@ -18,6 +22,7 @@ import { AccountService } from '../../services/account.service';
   templateUrl: './sign-in-page.component.html',
   styleUrls: ['./sign-in-page.component.scss']
 })
+
 export class SignInPageComponent implements OnInit, AfterViewChecked {
   signInUserAccount = new FormControl<string>('', [Validators.required]);
   signInUserPassword = new FormControl<string>('', [Validators.required]);
@@ -54,7 +59,7 @@ export class SignInPageComponent implements OnInit, AfterViewChecked {
     const signInResponseDto: Observable<SignInResponseDto> = this.accountService.signIn(signInRequestDto);
     signInResponseDto.subscribe((responseDto) => {
       if (responseDto != null) {
-        this.setUserUserAccount(responseDto);
+        this.setUserAccount(responseDto);
         this.routingService.navigate(UrlConst.PATH_PRODUCT_LISTING)
       }
       this.loadingService.stopLoading();
@@ -82,7 +87,7 @@ export class SignInPageComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  private setUserUserAccount(responseDto: SignInResponseDto) {
+  private setUserAccount(responseDto: SignInResponseDto) {
     const user: User = new User();
     user.userAccount = responseDto.userAccount;
     user.userName = responseDto.userName;
@@ -93,5 +98,4 @@ export class SignInPageComponent implements OnInit, AfterViewChecked {
     user.userCurrency = responseDto.userCurrency;
     this.accountService.setUser(user);
   }
-  
 }
